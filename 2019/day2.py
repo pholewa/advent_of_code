@@ -2,10 +2,6 @@ data_input = [1,0,0,3,1,1,2,3,1,3,4,3,1,5,0,3,2,6,1,19,2,19,13,23,1,23,10,27,1,1
 data_input_copy = data_input.copy()
 test = [1,1,1,4,99,5,6,0,99]
 
-data_input[1] = 12
-data_input[2] = 2
-res1, res2 = 0, 0
-
 
 def do_summation(a, b):
     return a + b
@@ -25,7 +21,6 @@ def intcode(data, opcode, a_pos, b_pos, result_position):
         data[result_position] = do_multiplication(data[a_pos], data[b_pos])
 
 
-
 def check_pair(data, a, b):
     it = 0
     data[1] = a
@@ -35,14 +30,14 @@ def check_pair(data, a, b):
         it += 4
     return a, b
 
-for x in range(0, 100):
-    for y in range(0, 100):
-        a, b = check_pair(data_input, x, y)
-        if data_input[0] == 19690720:
-            res1, res2 = x, y
-            break
-        data_input = data_input_copy.copy()
+
+def get_answer(data_input):
+    for x in range(0, 100):
+        for y in range(0, 100):
+            a, b = check_pair(data_input, x, y)
+            if data_input[0] == 19690720:
+                return x, y
+            data_input = data_input_copy.copy()
 
 
-print(res1, res2)
-print(data_input[0])
+print(get_answer(data_input))
