@@ -1,4 +1,5 @@
 from collections import defaultdict
+import matplotlib.pyplot as plt
 
 class Intcode:
     def __init__(self, instructions):
@@ -217,6 +218,10 @@ data += boost
 
 
 amp = Intcode(data)
-amp.get_amp_output([])
+amp.get_amp_output([1])
 print("part 1: ", len(amp.points))
 
+x = [k[0] for k, v in amp.points.items() if v == 1]
+y = [k[1] for k, v in amp.points.items() if v == 1]
+plt.scatter(x, y)
+plt.show()
